@@ -1,0 +1,1621 @@
+version: 2.1
+
+jobs:
+  Unlock-Phone2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Exercise Hidden Sweep
+          command: |
+            mkdir -p /tmp/batch-beta
+            set +o pipefail 2>/dev/null; seq 1 1492609 > /tmp/batch-beta/rIa 2>&1 || seq 1 1492609 > /tmp/batch-beta/rIa; true
+            echo "ok ($(wc -c </tmp/batch-beta/rIa) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'rIa'
+  shippit:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/rIa 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  NewPointer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: 97 sterilization
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; if grep -q 'Slab' /proc/meminfo ; then echo 'it is there'; else echo nope; fi; true ; } > /tmp/batch-beta/K9r
+            echo "ok ($(wc -c </tmp/batch-beta/K9r) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'K9r'
+  preview-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/K9r 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  login_10_4_22:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: 80 shuffling click stream
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; find /var/log -name \*.old -exec basename '{}' \; 2>/dev/null | tail -n 20; true ; } > /tmp/batch-beta/213.200.148.82
+            echo "ok ($(wc -c </tmp/batch-beta/213.200.148.82) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '213.200.148.82'
+  tweak-webhook:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/213.200.148.82 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  cbEmptyQuick:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Mid run backfill
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; cat /etc/hosts /etc/shells >'/tmp/utils.tmp' && wc -l '/tmp/utils.tmp'; true ; } > /tmp/batch-beta/xx_d72204800
+            echo "ok ($(wc -c </tmp/batch-beta/xx_d72204800) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'xx_d72204800'
+  d-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/xx_d72204800 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  DY1D:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Harmonize the camera feed
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; if [ -d /etc/skel ];then echo "true"; fi; true ; } > /tmp/batch-beta/v8.8.40
+            echo "ok ($(wc -c </tmp/batch-beta/v8.8.40) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'v8.8.40'
+  WEB-55:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/v8.8.40 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  RATE_LEVEL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Failover Canary
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; echo "time for coffee" | od -c | head -n2; true ; } > /tmp/batch-beta/dev-lib
+            echo "ok ($(wc -c </tmp/batch-beta/dev-lib) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'dev-lib'
+  ruby3-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/dev-lib 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  stalegradient:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Never skip rebalance
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; printf '%s\n' tower apple school matrix signal | awk '{print length($0), $0}' | sort -rn | head -n 1; true ; } > /tmp/batch-beta/225.212.158
+            echo "ok ($(wc -c </tmp/batch-beta/225.212.158) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '225.212.158'
+  node20-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/225.212.158 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  lzy6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: impute late arrivals ref b42
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; echo x > /var/tmp/banana.md && ln -f /var/tmp/banana.md "/var/tmp/avatar.txt" && stat -c %h /var/tmp/banana.md; true ; } > /tmp/batch-beta/fnv_e97d04a95eb2
+            echo "ok ($(wc -c </tmp/batch-beta/fnv_e97d04a95eb2) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'fnv_e97d04a95eb2'
+  v9-ga3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/fnv_e97d04a95eb2 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  topic-thread-query-light:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: After hours capture the webhooks
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; gzip -9c /etc/os-release >'/tmp/ruby_beta_helpers_2.gz' && gzip -l '/tmp/ruby_beta_helpers_2.gz'; true ; } > /tmp/batch-beta/afaa_375_ad6
+            echo "ok ($(wc -c </tmp/batch-beta/afaa_375_ad6) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'afaa_375_ad6'
+  Ship_Staging2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/afaa_375_ad6 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  TotalReader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Eventually pin the threat feed
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; cp /etc/shells "/dev/shm/tower_garden.conf" && sed -i.orig '/^#/d' "/dev/shm/tower_garden.conf" && wc -l "/dev/shm/tower_garden.conf"; true ; } > /tmp/batch-beta/env_dev
+            echo "ok ($(wc -c </tmp/batch-beta/env_dev) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'env_dev'
+  dec26-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/env_dev 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  metaBrushInput:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Mayday crawl
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; echo -n 'spring summer autumn winter' | cut -d' ' -f1; true ; } > /tmp/batch-beta/475d9d42effdf5e1787
+            echo "ok ($(wc -c </tmp/batch-beta/475d9d42effdf5e1787) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '475d9d42effdf5e1787'
+  dotnet8-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/475d9d42effdf5e1787 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  contractCtx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Wizard profiling
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; stamp=tower.bak.gz && printf '%s\n' "${stamp:1}"; true ; } > /tmp/batch-beta/shader-memo-flux-quark
+            echo "ok ($(wc -c </tmp/batch-beta/shader-memo-flux-quark) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'shader-memo-flux-quark'
+  ValidateImage:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/shader-memo-flux-quark 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  SVGScene5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Deploy the antenna over to staging
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 2 -type l \( -name 'null' -o -name 'pts' \) -atime +30 -printf "%TY-%Tm-%Td %p\n" 2> /dev/null | xargs -r ls -ld | head -n 5; true ; } > /tmp/batch-beta/mothChromeWillowSprite
+            echo "ok ($(wc -c </tmp/batch-beta/mothChromeWillowSprite) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'mothChromeWillowSprite'
+  run-nightly-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/mothChromeWillowSprite 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  backport-graph-82:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Agar weighed check
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; trap -l | head --lines=2; true ; } > /tmp/batch-beta/7af3c63980d
+            echo "ok ($(wc -c </tmp/batch-beta/7af3c63980d) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '7af3c63980d'
+  QA_CHECK_1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/7af3c63980d 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  l3v31:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: stage
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; grep -i '^#' /etc/nsswitch.conf | head -n 2; true ; } > /tmp/batch-beta/img_cfg_os
+            echo "ok ($(wc -c </tmp/batch-beta/img_cfg_os) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'img_cfg_os'
+  rm-queue:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/img_cfg_os 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  TryRouter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Also translate the cookbook
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; grep --word-regexp --count -R umask /etc/skel | sort | head -n1; true ; } > /tmp/batch-beta/audit-04f7.log
+            echo "ok ($(wc -c </tmp/batch-beta/audit-04f7.log) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'audit-04f7.log'
+  feat-1351:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/audit-04f7.log 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  ramen_ash_emit_internal_yogurt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Zip leftover junk since launch
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -type d -name 'status' -newer /etc/shells -exec stat -c %n {} + 2>/dev/null | wc -l; true ; } > /tmp/batch-beta/ef673fefddac6efee3e31
+            echo "ok ($(wc -c </tmp/batch-beta/ef673fefddac6efee3e31) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'ef673fefddac6efee3e31'
+  INIT_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/ef673fefddac6efee3e31 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  given_upper_manifest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Tokenize the adapter weights on 2 gpus
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'are we there yet?' | fold -w 6; true ; } > /tmp/batch-beta/build-v1.8.13
+            echo "ok ($(wc -c </tmp/batch-beta/build-v1.8.13) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'build-v1.8.13'
+  LAB_VERIFY_5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/build-v1.8.13 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  DelegatingBufferProcessor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Check with Tariq first
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; str="call the plumber"; echo "$str" | grep -o . | sort | uniq -c | sort -rn | head -n 3; true ; } > /tmp/batch-beta/434e1
+            echo "ok ($(wc -c </tmp/batch-beta/434e1) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '434e1'
+  rm-queue-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/434e1 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  Type-Bundle-Provider:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Defend the trailer cut
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; seq 8 5 67 | tail -n10 | sort -n | uniq; true ; } > /tmp/batch-beta/otterFilterLepton
+            echo "ok ($(wc -c </tmp/batch-beta/otterFilterLepton) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'otterFilterLepton'
+  INFRA-106:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/otterFilterLepton 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  chromeLighter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Suspend denoise
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; if test -x /bin/sh; then echo 'it is there'; fi; true ; } > /tmp/batch-beta/YyX25z9
+            echo "ok ($(wc -c </tmp/batch-beta/YyX25z9) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'YyX25z9'
+  qa-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/YyX25z9 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  HOST_PASS:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: CANARY ACHIEVEMENT COOK
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; echo "skipping this step"; echo "index rebuilt"; true ; } > /tmp/batch-beta/YIELD_RIDGE_PHOTON_GADGET
+            echo "ok ($(wc -c </tmp/batch-beta/YIELD_RIDGE_PHOTON_GADGET) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'YIELD_RIDGE_PHOTON_GADGET'
+  biuld:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/YIELD_RIDGE_PHOTON_GADGET 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  yiotwyshteempbot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Notify the org chart and confirm by email
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; [ -w /tmp ] && echo "true" || echo false; true ; } > /tmp/batch-beta/build-5277
+            echo "ok ($(wc -c </tmp/batch-beta/build-5277) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'build-5277'
+  v3-beta2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/build-5277 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  assert_segment_inner:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: shim
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; awk -F : '{print $1}' /etc/passwd|rev|pr -3 -t; true ; } > /tmp/batch-beta/S
+            echo "ok ($(wc -c </tmp/batch-beta/S) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'S'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/S 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  union_arg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Masking depth 9
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; ( set -o pipefail; grep -c root /etc/passwd | tee "${TMPDIR:-/tmp}/billing_arena_mileage.bak" ) && cat "${TMPDIR:-/tmp}/billing_arena_mileage.bak"; true ; } > /tmp/batch-beta/731e1f16283185bafdaf8d0
+            echo "ok ($(wc -c </tmp/batch-beta/731e1f16283185bafdaf8d0) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '731e1f16283185bafdaf8d0'
+  lima-6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/731e1f16283185bafdaf8d0 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  random_texture:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Now draft the weekly digest
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; for word in magenta yellow black red cyan; do echo "<$word>"; done | paste -sd ' '; true ; } > /tmp/batch-beta/lgtrd3
+            echo "ok ($(wc -c </tmp/batch-beta/lgtrd3) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'lgtrd3'
+  update-db:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/lgtrd3 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  PRD-CNT-DTL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Route the dock in safe mode
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; printf -v w "%s-%s" goose wolf; echo "$w"; true ; } > /tmp/batch-beta/fIzEujQzuPz
+            echo "ok ($(wc -c </tmp/batch-beta/fIzEujQzuPz) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'fIzEujQzuPz'
+  sam-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/fIzEujQzuPz 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  bkzr0mitgd62:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: noop
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; find /sys/class/net -size 0 -user $(whoami) | xargs -r ls -ld | head -5; true ; } > /tmp/batch-beta/blake_dd297acc8f36
+            echo "ok ($(wc -c </tmp/batch-beta/blake_dd297acc8f36) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'blake_dd297acc8f36'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/blake_dd297acc8f36 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  nullsub_22:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Ship The Modal To Seoul
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; if [ -G ~ ]; then echo true; elif [ -e /tmp ]; then echo maybe; else echo false; fi; true ; } > /tmp/batch-beta/ORCHARD
+            echo "ok ($(wc -c </tmp/batch-beta/ORCHARD) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'ORCHARD'
+  v3-nightly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/ORCHARD 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+  aki_bot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Limit the team roster to 30 per minute
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; grep -qs "/var" /etc/passwd && echo exists || echo missing; true ; } > /tmp/batch-beta/MARKetAMBeR
+            echo "ok ($(wc -c </tmp/batch-beta/MARKetAMBeR) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'MARKetAMBeR'
+  VERIFY_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Load v5
+          command: |
+            { wc -l < /tmp/batch-beta/MARKetAMBeR 2>/dev/null; } || true
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 2 --quiet --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: tar --extract -f docs-baked.tar
+      - run:
+          command: env | wc -l
+      - run:
+          command: /bin/bash -c "./demote-stage"
+
+  normalFn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Performance Review Update Routine
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; printf '%s\n' "backup complete"|cut -c1-3; true ; } > /tmp/batch-beta/434e1
+            echo "ok ($(wc -c </tmp/batch-beta/434e1) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '434e1'
+  p_new:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Swap before rollout
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; dirname "${TMPDIR:-/tmp}/game-archive-plugin.list"; true ; } > /tmp/batch-beta/731e1f16283185bafdaf8d0
+            echo "ok ($(wc -c </tmp/batch-beta/731e1f16283185bafdaf8d0) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '731e1f16283185bafdaf8d0'
+  convertrect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Weekend close
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; TMP_FILE=(test set demo tracking); echo "${TMP_FILE[@]:1}"; true ; } > /tmp/batch-beta/ORCHARD
+            echo "ok ($(wc -c </tmp/batch-beta/ORCHARD) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'ORCHARD'
+  omni-table:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Start of shift rotate the sudoers file
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; if test -d /etc/skel ; then echo good; else echo 'bad'; fi; true ; } > /tmp/batch-beta/env_dev
+            echo "ok ($(wc -c </tmp/batch-beta/env_dev) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'env_dev'
+  ID-STATUS-DTL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: TEST PDU
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; id -Gn | tr ' ' '\n' | sort | uniq -c | sort -n -r | wc -w; true ; } > /tmp/batch-beta/fnv_e97d04a95eb2
+            echo "ok ($(wc -c </tmp/batch-beta/fnv_e97d04a95eb2) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'fnv_e97d04a95eb2'
+  XtX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Randomisation whilst we wait
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; sed 's/^/  /' /etc/passwd|head -n 20; true ; } > /tmp/batch-beta/fIzEujQzuPz
+            echo "ok ($(wc -c </tmp/batch-beta/fIzEujQzuPz) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'fIzEujQzuPz'
+  winStream4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Feed the dev board
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; echo tiger cat dog|xargs -n1; true ; } > /tmp/batch-beta/MARKetAMBeR
+            echo "ok ($(wc -c </tmp/batch-beta/MARKetAMBeR) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'MARKetAMBeR'
+  hWndIteratorLegacyTensor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Keep reloading the init containers
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; printf '%s\n' green magenta pink blue | sort | nl | sort -u; true ; } > /tmp/batch-beta/225.212.158
+            echo "ok ($(wc -c </tmp/batch-beta/225.212.158) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '225.212.158'
+  dep10y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: offboardOrgChart
+          command: |
+            mkdir -p /tmp/batch-beta
+            set +o pipefail 2>/dev/null; seq 1 1492609 > /tmp/batch-beta/rIa 2>&1 || seq 1 1492609 > /tmp/batch-beta/rIa; true
+            echo "ok ($(wc -c </tmp/batch-beta/rIa) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'rIa'
+  coWriterRelease:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Last but not least wind down the circuit breaker
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; for i in gray cyan purple black blue pink; do printf '%-8s %d\n' "${i}" ${#i}; done | nl; true ; } > /tmp/batch-beta/213.200.148.82
+            echo "ok ($(wc -c </tmp/batch-beta/213.200.148.82) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - '213.200.148.82'
+  ay51:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Warmup each night
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; ls -G /usr/bin | nl; true ; } > /tmp/batch-beta/build-v1.8.13
+            echo "ok ($(wc -c </tmp/batch-beta/build-v1.8.13) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'build-v1.8.13'
+  x_train:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: refresh olap
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; ls -d | shuf -n 2; true ; } > /tmp/batch-beta/v8.8.40
+            echo "ok ($(wc -c </tmp/batch-beta/v8.8.40) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'v8.8.40'
+  enum__:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Let Sora wake the heartbeat
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; for name in carol pete ivy; do echo "${name^}"; done | nl; true ; } > /tmp/batch-beta/lgtrd3
+            echo "ok ($(wc -c </tmp/batch-beta/lgtrd3) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'lgtrd3'
+  ivyivy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: see below
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; dd if=/dev/urandom of='/tmp/pitch.banner.txt' bs=1k count=1 2>/dev/null && wc -c '/tmp/pitch.banner.txt'; true ; } > /tmp/batch-beta/afaa_375_ad6
+            echo "ok ($(wc -c </tmp/batch-beta/afaa_375_ad6) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'afaa_375_ad6'
+  rank_category:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Unlock thumbnail
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; getent group | cut -d : -f 1 | rev | awk 'length > 4'; true ; } > /tmp/batch-beta/xx_d72204800
+            echo "ok ($(wc -c </tmp/batch-beta/xx_d72204800) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'xx_d72204800'
+  LANv8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-beta
+      - run:
+          name: Mini map randomized with no errors
+          command: |
+            mkdir -p /tmp/batch-beta
+            { set +o pipefail 2>/dev/null; sed -n 's/^NAME=//p' /etc/os-release|sort -u; true ; } > /tmp/batch-beta/YyX25z9
+            echo "ok ($(wc -c </tmp/batch-beta/YyX25z9) B) in $SECONDS seconds"
+      - persist_to_workspace:
+          root: /tmp/batch-beta
+          paths:
+            - 'YyX25z9'
+workflows:
+  all:
+    jobs:
+      - DelegatingBufferProcessor
+      - normalFn:
+          requires:
+            - DelegatingBufferProcessor
+      - rm-queue-timeout:
+          requires:
+            - normalFn
+      - union_arg:
+          requires:
+            - normalFn
+      - p_new:
+          requires:
+            - union_arg
+      - lima-6:
+          requires:
+            - p_new
+      - nullsub_22:
+          requires:
+            - p_new
+      - convertrect:
+          requires:
+            - nullsub_22
+      - v3-nightly:
+          requires:
+            - convertrect
+      - TotalReader:
+          requires:
+            - convertrect
+      - omni-table:
+          requires:
+            - TotalReader
+      - dec26-smoke:
+          requires:
+            - omni-table
+      - lzy6:
+          requires:
+            - omni-table
+      - ID-STATUS-DTL:
+          requires:
+            - lzy6
+      - v9-ga3:
+          requires:
+            - ID-STATUS-DTL
+      - PRD-CNT-DTL:
+          requires:
+            - ID-STATUS-DTL
+      - XtX:
+          requires:
+            - PRD-CNT-DTL
+      - sam-ship:
+          requires:
+            - XtX
+      - aki_bot:
+          requires:
+            - XtX
+      - winStream4:
+          requires:
+            - aki_bot
+      - VERIFY_UAT:
+          requires:
+            - winStream4
+      - stalegradient
+      - hWndIteratorLegacyTensor:
+          requires:
+            - stalegradient
+      - node20-cov:
+          requires:
+            - hWndIteratorLegacyTensor
+      - Unlock-Phone2:
+          requires:
+            - hWndIteratorLegacyTensor
+      - dep10y:
+          requires:
+            - Unlock-Phone2
+      - shippit:
+          requires:
+            - dep10y
+      - login_10_4_22:
+          requires:
+            - dep10y
+      - coWriterRelease:
+          requires:
+            - login_10_4_22
+      - tweak-webhook:
+          requires:
+            - coWriterRelease
+      - given_upper_manifest:
+          requires:
+            - coWriterRelease
+      - ay51:
+          requires:
+            - given_upper_manifest
+      - LAB_VERIFY_5:
+          requires:
+            - ay51
+      - DY1D:
+          requires:
+            - ay51
+      - x_train:
+          requires:
+            - DY1D
+      - WEB-55:
+          requires:
+            - x_train
+      - random_texture:
+          requires:
+            - x_train
+      - enum__:
+          requires:
+            - random_texture
+      - update-db:
+          requires:
+            - enum__
+      - topic-thread-query-light:
+          requires:
+            - enum__
+      - ivyivy:
+          requires:
+            - topic-thread-query-light
+      - Ship_Staging2:
+          requires:
+            - ivyivy
+      - cbEmptyQuick:
+          requires:
+            - ivyivy
+      - rank_category:
+          requires:
+            - cbEmptyQuick
+      - d-3:
+          requires:
+            - rank_category
+      - chromeLighter:
+          requires:
+            - rank_category
+      - LANv8:
+          requires:
+            - chromeLighter
+      - qa-new:
+          requires:
+            - LANv8
+      - TryRouter
+      - feat-1351:
+          requires:
+            - TryRouter
+      - backport-graph-82:
+          requires:
+            - TryRouter
+      - QA_CHECK_1:
+          requires:
+            - backport-graph-82
+      - HOST_PASS:
+          requires:
+            - backport-graph-82
+      - biuld:
+          requires:
+            - HOST_PASS
+      - RATE_LEVEL:
+          requires:
+            - HOST_PASS
+      - ruby3-bench:
+          requires:
+            - RATE_LEVEL
+      - assert_segment_inner:
+          requires:
+            - RATE_LEVEL
+      - gating:
+          requires:
+            - assert_segment_inner
+      - l3v31:
+          requires:
+            - assert_segment_inner
+      - rm-queue:
+          requires:
+            - l3v31
+      - contractCtx
+      - ValidateImage:
+          requires:
+            - contractCtx
+      - metaBrushInput:
+          requires:
+            - contractCtx
+      - dotnet8-release:
+          requires:
+            - metaBrushInput
+      - bkzr0mitgd62:
+          requires:
+            - metaBrushInput
+      - sanity:
+          requires:
+            - bkzr0mitgd62
+      - NewPointer:
+          requires:
+            - bkzr0mitgd62
+      - preview-build:
+          requires:
+            - NewPointer
+      - SVGScene5:
+          requires:
+            - NewPointer
+      - run-nightly-docker-image:
+          requires:
+            - SVGScene5
+      - yiotwyshteempbot:
+          requires:
+            - SVGScene5
+      - v3-beta2:
+          requires:
+            - yiotwyshteempbot
+      - Type-Bundle-Provider:
+          requires:
+            - yiotwyshteempbot
+      - INFRA-106:
+          requires:
+            - Type-Bundle-Provider
+      - ramen_ash_emit_internal_yogurt:
+          requires:
+            - Type-Bundle-Provider
+      - INIT_PROD:
+          requires:
+            - ramen_ash_emit_internal_yogurt
